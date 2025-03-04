@@ -1,6 +1,23 @@
+/**
+ * Analizador léxico (Lexer) para expresiones en LISP.
+ * Este programa lee una expresión LISP desde la entrada estándar,
+ * verifica si los paréntesis están correctamente balanceados
+ * y extrae los tokens de la expresión.
+ * 
+ * @author Derek Coronado, Emilio Chen, Tiffany Salazar
+ * @since 27/02/2025
+ * @last_modified 03/03/2025
+ */
 import java.util.*;
 
 public class LispLexer {
+    /**
+     * Método principal que ejecuta el lexer.
+     * Solicita al usuario una expresión LISP, valida la estructura de paréntesis
+     * y extrae los tokens de la expresión.
+     * 
+     * @param args Argumentos de línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese la expresión LISP:");
@@ -25,6 +42,12 @@ public class LispLexer {
         System.out.println("Tokens encontrados: " + extractedTokens);
     }
 
+    /**
+     * Valida si los paréntesis en la expresión están balanceados.
+     * 
+     * @param content Expresión a evaluar.
+     * @return true si los paréntesis están balanceados, false en caso contrario.
+     */
     private static boolean validateParentheses(String content) {
         int counter = 0;
         for (char character : content.toCharArray()) {
@@ -35,6 +58,12 @@ public class LispLexer {
         return counter == 0;
     }
 
+    /**
+     * Extrae los tokens de la expresión LISP.
+     * 
+     * @param input Expresión de entrada.
+     * @return Lista de tokens extraídos.
+     */
     private static List<String> extractTokens(String input) {
         List<String> tokensList = new ArrayList<>();
         StringTokenizer tokenProcessor = new StringTokenizer(input, "() ", true);

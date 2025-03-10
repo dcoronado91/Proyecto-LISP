@@ -1,5 +1,5 @@
 import java.util.*;
-
+//Clase de UML llamada CustomTokenizer2025
 /**
  * Clase encargada de extraer los tokens de una expresión LISP.
  * 

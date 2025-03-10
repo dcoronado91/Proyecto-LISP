@@ -1,5 +1,5 @@
 import java.util.*;
-
+//Nombre de la clase en el UML: CustomListInterpreter2025
 /**
  * Clase principal que ejecuta el lexer para expresiones LISP.
  * 

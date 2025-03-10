@@ -1,3 +1,4 @@
+//Clase que no aparece en primera versión del UML
 /**
  * Clase que valida si los paréntesis en la expresión están balanceados.
  * 

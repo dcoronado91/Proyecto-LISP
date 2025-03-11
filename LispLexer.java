@@ -5,30 +5,23 @@ import java.util.*;
  * 
  * @author Derek Coronado, Emilio Chen, Tiffany Salazar
  * @since 27/02/2025
- * @last_modified 03/03/2025
+ * @last_modified 10/03/2025
  */
 public class LispLexer {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese la expresión LISP:");
-        
-        StringBuilder input = new StringBuilder();
-        while (scanner.hasNextLine()) {
-            String currentLine = scanner.nextLine();
-            if (currentLine.isEmpty()) break;
-            input.append(currentLine).append(" ");
-        }
+        String input = scanner.nextLine().trim(); //Entrada de texto para el usuario
         scanner.close();
-        
-        String fullExpression = input.toString().trim();
 
-        if (ParenthesisValidator.validate(fullExpression)) {
-            System.out.println("Expresión válida: paréntesis correctamente balanceados.");
-        } else {
+        if (!ParenthesisValidator.validate(input)) { //Cambio de fullExpression a input
             System.out.println("Expresión inválida: desbalance en los paréntesis.");
+            return;
         }
         
-        List<String> extractedTokens = Tokenizer.extractTokens(fullExpression);
-        System.out.println("Tokens encontrados: " + extractedTokens);
+        List<CustomToken2025> extractedTokens = Tokenizer.extractTokens(input);//Cambio de List<String> a List<CustomToken2025>
+        Object parsedExpression = LispParser.parseTokens(extractedTokens); //Proceso del parser de Lisp
+        
+        System.out.println("Tokens encontrados: " + parsedExpression); //Resultados
     }
 }

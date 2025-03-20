@@ -5,10 +5,11 @@ public class LispInterpreter {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Environment globalEnv = new Environment();
-        
+
         // Inicializar el entorno con valores básicos
         globalEnv.define("T", true);
         globalEnv.define("NIL", null);
+        globalEnv.define("t", true);  // Añadir versión en minúscula
         
         // Definir operadores como funciones básicas
         globalEnv.define("+", "+");
@@ -32,7 +33,6 @@ public class LispInterpreter {
             System.out.print("Lisp> ");
             String input = scanner.nextLine().trim();
             if (input.equalsIgnoreCase("exit")) break;
-            
             try {
                 List<CustomToken2025> tokens = Tokenizer.extractTokens(input);
                 LispExpression parsedExpression = LispParser.parseTokens(tokens);

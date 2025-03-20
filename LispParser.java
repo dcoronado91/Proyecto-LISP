@@ -5,8 +5,8 @@ import java.util.*;
  * el árbol de expresiones correspondiente.
  * 
  * @author Derek Coronado, Emilio Chen, Tiffany Salazar
- * @since 16/03/2025
- * @last_modified 19/03/2025
+ * @since 06/03/2025
+ * @last_modified 10/03/2025
  */
 public class LispParser {
     /**

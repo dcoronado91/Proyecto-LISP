@@ -28,7 +28,8 @@ public class LispBuiltins {
             
             // Predicados
             case "atom": return isAtom(args, env);
-            case "list": return isList(args, env);
+            case "list": return createList(args, env);
+            case "listp": return isList(args, env);
             case "equal": return isEqual(args, env);
             case "=": return equals(args, env);
             case "<": return lessThan(args, env);
@@ -184,16 +185,34 @@ public class LispBuiltins {
     }
     
     /**
-     * Implementa el predicado LIST.
+     * Implementa el predicado LISTP.
      * Verifica si un objeto es una lista.
      */
     private static Object isList(List<LispExpression> args, Environment env) {
         if (args.size() != 1) {
-            throw new RuntimeException("LIST requiere exactamente un argumento");
+            throw new RuntimeException("LISTP requiere exactamente un argumento");
         }
         
         Object value = args.get(0).evaluate(env);
         return value instanceof LispList;
+    }
+    
+    /**
+     * Implementa la función LIST.
+     * Crea una lista con los argumentos dados.
+     */
+    private static Object createList(List<LispExpression> args, Environment env) {
+        List<LispExpression> resultList = new ArrayList<>();
+        for (LispExpression arg : args) {
+            Object evaluated = arg.evaluate(env);
+            if (evaluated instanceof LispExpression) {
+                resultList.add((LispExpression) evaluated);
+            } else {
+                // Convertir valores no-LispExpression a LispExpression
+                resultList.add(new LispSymbol(evaluated.toString()));
+            }
+        }
+        return new LispList(resultList);
     }
     
     /**

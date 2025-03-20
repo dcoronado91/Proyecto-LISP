@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.Scanner;
-import java.util.Scanner;
 
 public class LispInterpreter {
     public static void main(String[] args) {
@@ -23,6 +22,7 @@ public class LispInterpreter {
         // Agregar las funciones atom y list
         globalEnv.define("atom", "atom");
         globalEnv.define("list", "list");
+        globalEnv.define("listp", "listp");
         
         // Imprimir mensaje de bienvenida
         System.out.println("Intérprete LISP v1.0");

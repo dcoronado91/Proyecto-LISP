@@ -1,19 +1,30 @@
-//Clase que no aparece en primera versión del UML
 /**
- * Clase que valida si los paréntesis en la expresión están balanceados.
- * 
+ * Validador de paréntesis para expresiones LISP.
+ * Verifica que los paréntesis estén correctamente balanceados.
+ *
  * @author Derek Coronado, Emilio Chen, Tiffany Salazar
- * @since 27/02/2025
- * @last_modified 03/03/2025
+ * @since 16/03/2025
+ * @last_modified 19/03/2025
  */
 public class ParenthesisValidator {
-    public static boolean validate(String content) {
-        int counter = 0;
-        for (char character : content.toCharArray()) {
-            if (character == '(') counter++;
-            if (character == ')') counter--;
-            if (counter < 0) return false;
+    /**
+     * Valida que los paréntesis en la expresión estén balanceados.
+     *
+     * @param expression La expresión a validar
+     * @return true si los paréntesis están balanceados, false en caso contrario
+     */
+    public static boolean validate(String expression) {
+        int count = 0;
+        for (char c : expression.toCharArray()) {
+            if (c == '(') {
+                count++;
+            } else if (c == ')') {
+                count--;
+                if (count < 0) {
+                    return false;
+                }
+            }
         }
-        return counter == 0;
+        return count == 0;
     }
 }

@@ -17,8 +17,8 @@ public class Tokenizer {
      */
     public static List<CustomToken2025> extractTokens(String input) {
         List<CustomToken2025> tokensList = new ArrayList<>();
-        StringTokenizer tokenProcessor = new StringTokenizer(input, "() ", true);
-
+        StringTokenizer tokenProcessor = new StringTokenizer(input, "() '", true);
+    
         while (tokenProcessor.hasMoreTokens()) {
             String nextToken = tokenProcessor.nextToken().trim();
             if (!nextToken.isEmpty()) {
@@ -28,7 +28,6 @@ public class Tokenizer {
         }
         return tokensList;
     }
-
     /**
      * Determina el tipo de token basado en su contenido.
      * 
@@ -40,6 +39,8 @@ public class Tokenizer {
             return CustomTokenType2025.LEFT_PAREN;
         } else if (token.equals(")")) {
             return CustomTokenType2025.RIGHT_PAREN;
+        } else if (token.equals("'")) {
+            return CustomTokenType2025.QUOTE;
         } else if (isNumeric(token)) {
             return CustomTokenType2025.NUMBER;
         } else {

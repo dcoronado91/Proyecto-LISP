@@ -1,6 +1,23 @@
 import java.util.List;
 
+/**
+ * Clase que implementa las funciones incorporadas del lenguaje LISP.
+ * Provee operaciones básicas como suma, resta, multiplicación y división.
+ * 
+ * @author Derek Coronado, Emilio Chen, Tiffany Salazar
+ * @since 16/03/2025
+ * @last_modified 19/03/2025
+ */
 public class LispBuiltins {
+    /**
+     * Ejecuta una función incorporada según el nombre proporcionado.
+     * 
+     * @param functionName El nombre de la función a ejecutar
+     * @param args Los argumentos de la función
+     * @param env El entorno de ejecución
+     * @return El resultado de la operación
+     * @throws RuntimeException Si la función no está definida
+     */
     public static Object call(String functionName, List<LispExpression> args, Environment env) {
         switch (functionName) {
             case "+":

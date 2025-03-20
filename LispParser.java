@@ -1,6 +1,21 @@
 import java.util.*;
 
+/**
+ * Clase que realiza el análisis sintáctico de tokens LISP y construye
+ * el árbol de expresiones correspondiente.
+ * 
+ * @author Derek Coronado, Emilio Chen, Tiffany Salazar
+ * @since 16/03/2025
+ * @last_modified 19/03/2025
+ */
 public class LispParser {
+    /**
+     * Analiza una lista de tokens y construye el árbol de expresiones LISP.
+     * 
+     * @param tokens Lista de tokens a analizar
+     * @return Una expresión LISP que representa el árbol sintáctico
+     * @throws RuntimeException Si hay errores de sintaxis
+     */
     public static LispExpression parseTokens(List<CustomToken2025> tokens) {
         Stack<List<LispExpression>> stack = new Stack<>();
         stack.push(new ArrayList<>()); // Pila de listas anidadas
@@ -37,7 +52,7 @@ public class LispParser {
             throw new RuntimeException("Paréntesis desbalanceados.");
         }
 
-        // 🔥 Tomar la lista final y asegurarse de que no está vacía
+        // Tomar la lista final y asegurarse de que no está vacía
         List<LispExpression> finalList = stack.pop();
         if (finalList.isEmpty()) {
             throw new IllegalArgumentException("Error de parsing: la lista está vacía.");

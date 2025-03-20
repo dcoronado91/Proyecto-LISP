@@ -30,6 +30,7 @@ public class LispBuiltins {
             case "atom": return isAtom(args, env);
             case "list": return isList(args, env);
             case "equal": return isEqual(args, env);
+            case "=": return equals(args, env);
             case "<": return lessThan(args, env);
             case ">": return greaterThan(args, env);
             
@@ -145,6 +146,28 @@ public class LispBuiltins {
         }
         
         return result;
+    }
+    
+    /**
+     * Implementa el predicado =.
+     * Compara si dos valores son iguales.
+     */
+    private static Object equals(List<LispExpression> args, Environment env) {
+        if (args.size() != 2) {
+            throw new RuntimeException("= requiere exactamente dos argumentos");
+        }
+        
+        Object val1 = args.get(0).evaluate(env);
+        Object val2 = args.get(1).evaluate(env);
+        
+        if (val1 == null && val2 == null) return true;
+        if (val1 == null || val2 == null) return false;
+        
+        if (val1 instanceof Number && val2 instanceof Number) {
+            return ((Number) val1).doubleValue() == ((Number) val2).doubleValue();
+        }
+        
+        return val1.equals(val2);
     }
     
     /**
